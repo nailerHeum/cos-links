@@ -5,9 +5,9 @@ const INITIAL_PAGE_NUMBER = 1;
 const PAGE_LIMIT = 9;
 const FIXED_CATEGORIES = ['all', 'backend', 'frontend', 'iOS', 'swift'];
 const og = require('open-graph');
-
+const verifyApiUser = require('../middlewares/api-auth');
 // link insertion
-router.post('/link', async (req, res) => {
+router.post('/link', verifyApiUser,async (req, res) => {
   console.log(req.body);
   const { author, title, description, category, url } = req.body;
   if (!url) {
@@ -37,7 +37,7 @@ router.post('/link', async (req, res) => {
     }
   });
 });
-router.get('/', async (req, res) => {
+router.get('/', verifyApiUser,async (req, res) => {
   const isIosApp = req.headers['user-agent'].includes('codesquad-blog-collection');
   let requestAuthor = req.query.author;
   let requestPage = req.query.page;
