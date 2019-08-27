@@ -21,4 +21,39 @@ describe('Server', ()=>{
           return;
         });
     });
+    it('get /v1 request', (done) => {
+      request(server).get('/v1')
+        .expect(200)
+        .end((err, res) => {
+          if (err) {
+            done(err);
+            return;
+          }
+          res.body.should.have.property('links');
+          res.body.should.have.property('categories');
+          done();
+          return;
+        });
+    });
+    it('post /v1/link request', (done) => {
+      request(server).post('/v1/link')
+        .send({
+          author: 'Corn',
+          title: '스토리보드',
+          description: '아오에스분들 보세여',
+          category: 'iOS',
+          url: 'https://baked-corn.tistory.com/54',
+        })
+        .set('Accept', 'application/json')
+        .expect(201)
+        .end((err, res) => {
+          if (err) {
+            done(err);
+            return;
+          }
+          res.body.message.should.be.equal("Link Created!");
+          done();
+          return;
+        });
+    });
 });
