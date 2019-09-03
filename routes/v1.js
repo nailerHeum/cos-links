@@ -8,7 +8,6 @@ const og = require('open-graph');
 const verifyApiUser = require('../middlewares/api-auth');
 // link insertion
 router.post('/link', verifyApiUser,async (req, res) => {
-  console.log(req.body);
   const { author, title, description, category, url } = req.body;
   if (!url) {
     res.status(400).json({
@@ -38,7 +37,7 @@ router.post('/link', verifyApiUser,async (req, res) => {
   });
 });
 router.get('/', verifyApiUser,async (req, res) => {
-  const isIosApp = req.headers['user-agent'].includes('codesquad-blog-collection');
+  // const isIosApp = req.headers['user-agent'].includes('codesquad-blog-collection');
   let requestAuthor = req.query.author;
   let requestPage = req.query.page;
   let requestCategory = req.query.category;
