@@ -1,4 +1,4 @@
 # cos-links API
 
-mongodb, mongodb, web api
+mongodb, mongoose, web api
 
