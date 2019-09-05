@@ -6,7 +6,27 @@ const PAGE_LIMIT = 9;
 const FIXED_CATEGORIES = ['all', 'backend', 'frontend', 'iOS', 'swift'];
 const og = require('open-graph');
 const verifyApiUser = require('../middlewares/api-auth');
-// link insertion
+
+/**
+ * @swagger
+ * definitions:
+ *   Link:
+ *     properties:
+ *       author: 
+ *         type: string
+ *       title:
+ *         type: string
+ *       description:
+ *         type: string
+ *       category:
+ *         type: string
+ *       url:
+ *         type: string
+ *       metadata: 
+ *         type: string
+ */
+
+
 router.post('/link', verifyApiUser,async (req, res) => {
   const { author, title, description, category, url } = req.body;
   if (!url) {
@@ -36,6 +56,38 @@ router.post('/link', verifyApiUser,async (req, res) => {
     }
   });
 });
+
+/**
+ * @swagger
+ * /v1/?author={author}&page={page}&category={category}:
+ *   get:
+ *     tags:
+ *       - Links
+ *     description: Get links with some conditions
+ *     parameters:
+ *       - name: author
+ *         description: author of links
+ *         in: path
+ *         required: false
+ *         type: string
+ *       - name: page
+ *         description: current page of links
+ *         in: path
+ *         required: false
+ *         type: integer
+ *       - name: category
+ *         description: specific category of links 
+ *         in: path
+ *         required: false
+ *         type: string
+ *     produces:
+ *       - application/json
+ *     responses:
+ *       200:
+ *         description: An array of links
+ *         schema:
+ *           $ref: '#/definitions/Link'
+ */
 router.get('/', verifyApiUser,async (req, res) => {
   // const isIosApp = req.headers['user-agent'].includes('codesquad-blog-collection');
   let requestAuthor = req.query.author;
@@ -65,6 +117,8 @@ router.get('/', verifyApiUser,async (req, res) => {
     categories: FIXED_CATEGORIES,
   });
 });
+
+
 router.get('/rank', async (req, res) => {
   const ranks = await Link.aggregate(
     [{
@@ -84,7 +138,7 @@ router.get('/rank', async (req, res) => {
     return 0;
   });
   const results = ranks.slice(0,10);
-  console.log(results);
+
   res.status(200).json({
     ranking: results,
   });
