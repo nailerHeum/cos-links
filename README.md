@@ -1,4 +1,4 @@
 # cos-links API
 
-mysql, sequelize, json api
+mongodb, mongodb, web api
 
