@@ -59,7 +59,7 @@ router.post('/link', verifyApiUser,async (req, res) => {
 
 /**
  * @swagger
- * /v1/?author={author}&page={page}&category={category}:
+ * /v1:
  *   get:
  *     tags:
  *       - Links
@@ -86,7 +86,38 @@ router.post('/link', verifyApiUser,async (req, res) => {
  *       200:
  *         description: An array of links
  *         schema:
- *           $ref: '#/definitions/Link'
+ *           type: object
+ *           properties:
+ *             links:
+ *               type: object
+ *               properties:
+ *                 docs:
+ *                   type: array
+ *                   items:
+ *                     $ref: '#/definitions/Link'
+ *                 totalDocs:
+ *                   type: integer
+ *                 limit:
+ *                   type: integer
+ *                 hasPrevPage:
+ *                   type: boolean
+ *                 hasNextPage:
+ *                   type: boolean
+ *                 page:
+ *                   type: integer
+ *                 totalPages:
+ *                   type: integer
+ *                 pagingCounter:
+ *                   type: integer
+ *                 prevPage:
+ *                   type: integer
+ *                 nextPage:
+ *                   type: integer
+ *             categories:
+ *               type: array
+ *               items:
+ *                 type: string
+ *                 
  */
 router.get('/', verifyApiUser,async (req, res) => {
   // const isIosApp = req.headers['user-agent'].includes('codesquad-blog-collection');
