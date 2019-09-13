@@ -20,12 +20,13 @@ app.get('/', (req, res) => res.status(200).render(index.html));
 
 const swaggerOptions = { 
   swaggerDefinition: {
+    openapi: '3.0.0',
     info: {
       title: 'linksquad-api', 
       version: '1.0.0', 
     },
   },
-  apis: ['./routes/v1.js'],
+  apis: ['./swagger-docs.yaml'],
 };
 const swaggerSpec = swaggerJSDoc(swaggerOptions);
 app.get('/api-docs.json', function(req, res) { // line 41

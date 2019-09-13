@@ -7,26 +7,6 @@ const FIXED_CATEGORIES = ['all', 'backend', 'frontend', 'iOS', 'swift'];
 const og = require('open-graph');
 const verifyApiUser = require('../middlewares/api-auth');
 
-/**
- * @swagger
- * definitions:
- *   Link:
- *     properties:
- *       author: 
- *         type: string
- *       title:
- *         type: string
- *       description:
- *         type: string
- *       category:
- *         type: string
- *       url:
- *         type: string
- *       metadata: 
- *         type: string
- */
-
-
 router.post('/link', verifyApiUser,async (req, res) => {
   const { author, title, description, category, url } = req.body;
   if (!url) {
@@ -57,68 +37,6 @@ router.post('/link', verifyApiUser,async (req, res) => {
   });
 });
 
-/**
- * @swagger
- * /v1:
- *   get:
- *     tags:
- *       - Links
- *     description: Get links with some conditions
- *     parameters:
- *       - name: author
- *         description: author of links
- *         in: path
- *         required: false
- *         type: string
- *       - name: page
- *         description: current page of links
- *         in: path
- *         required: false
- *         type: integer
- *       - name: category
- *         description: specific category of links 
- *         in: path
- *         required: false
- *         type: string
- *     produces:
- *       - application/json
- *     responses:
- *       200:
- *         description: An array of links
- *         schema:
- *           type: object
- *           properties:
- *             links:
- *               type: object
- *               properties:
- *                 docs:
- *                   type: array
- *                   items:
- *                     $ref: '#/definitions/Link'
- *                 totalDocs:
- *                   type: integer
- *                 limit:
- *                   type: integer
- *                 hasPrevPage:
- *                   type: boolean
- *                 hasNextPage:
- *                   type: boolean
- *                 page:
- *                   type: integer
- *                 totalPages:
- *                   type: integer
- *                 pagingCounter:
- *                   type: integer
- *                 prevPage:
- *                   type: integer
- *                 nextPage:
- *                   type: integer
- *             categories:
- *               type: array
- *               items:
- *                 type: string
- *                 
- */
 router.get('/', verifyApiUser,async (req, res) => {
   // const isIosApp = req.headers['user-agent'].includes('codesquad-blog-collection');
   let requestAuthor = req.query.author;
@@ -141,12 +59,18 @@ router.get('/', verifyApiUser,async (req, res) => {
   if (requestAuthor) {
     query.author = requestAuthor;
   }
-
-  links = await Link.paginate(query, options);
-  res.status(200).json({
-    links: links,
-    categories: FIXED_CATEGORIES,
-  });
+  try {
+    links = await Link.paginate(query, options);
+    res.status(200).json({
+      links: links,
+      categories: FIXED_CATEGORIES,
+    });
+  } catch (mongodbError) {
+    console.log(mongodbError);
+    res.status(500).json({
+      message: "Mongodb Selection Error",
+    })
+  }
 });
 
 
