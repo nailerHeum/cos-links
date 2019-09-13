@@ -1,7 +1,9 @@
 const config = require('config');
 const express = require('express');
 const v1Router = require('./routes/v1');
-var bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
+const swaggerUi = require('swagger-ui-express'); 
+const swaggerJSDoc = require('swagger-jsdoc'); 
 const app = express();
 
 app.all('/*', function(req, res, next) {
@@ -16,7 +18,24 @@ app.use(express.static('dist'));
 app.use('/v1', v1Router);
 app.get('/', (req, res) => res.status(200).render(index.html));
 
-const listen = app.listen(config.get('port'), () => console.log(`Testing server on port ${config.get('port')}`));
+const swaggerOptions = { 
+  swaggerDefinition: {
+    openapi: '3.0.0',
+    info: {
+      title: 'linksquad-api', 
+      version: '1.0.0', 
+    },
+  },
+  apis: ['./swagger-docs.yaml'],
+};
+const swaggerSpec = swaggerJSDoc(swaggerOptions);
+app.get('/api-docs.json', function(req, res) { // line 41
+  res.setHeader('Content-Type', 'application/json');
+  res.send(swaggerSpec);
+});
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
+const listen = app.listen(config.get('port'), () => console.log(`Run server on port ${config.get('port')}`));
 
 module.exports = app;
 module.exports.port = listen.address().port;

@@ -6,7 +6,7 @@ const PAGE_LIMIT = 9;
 const FIXED_CATEGORIES = ['all', 'backend', 'frontend', 'iOS', 'swift'];
 const og = require('open-graph');
 const verifyApiUser = require('../middlewares/api-auth');
-// link insertion
+
 router.post('/link', verifyApiUser,async (req, res) => {
   const { author, title, description, category, url } = req.body;
   if (!url) {
@@ -36,6 +36,7 @@ router.post('/link', verifyApiUser,async (req, res) => {
     }
   });
 });
+
 router.get('/', verifyApiUser,async (req, res) => {
   // const isIosApp = req.headers['user-agent'].includes('codesquad-blog-collection');
   let requestAuthor = req.query.author;
@@ -58,13 +59,21 @@ router.get('/', verifyApiUser,async (req, res) => {
   if (requestAuthor) {
     query.author = requestAuthor;
   }
-
-  links = await Link.paginate(query, options);
-  res.status(200).json({
-    links: links,
-    categories: FIXED_CATEGORIES,
-  });
+  try {
+    links = await Link.paginate(query, options);
+    res.status(200).json({
+      links: links,
+      categories: FIXED_CATEGORIES,
+    });
+  } catch (mongodbError) {
+    console.log(mongodbError);
+    res.status(500).json({
+      message: "Mongodb Selection Error",
+    })
+  }
 });
+
+
 router.get('/rank', async (req, res) => {
   const ranks = await Link.aggregate(
     [{
@@ -84,7 +93,7 @@ router.get('/rank', async (req, res) => {
     return 0;
   });
   const results = ranks.slice(0,10);
-  console.log(results);
+
   res.status(200).json({
     ranking: results,
   });

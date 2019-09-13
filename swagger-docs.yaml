@@ -1,0 +1,92 @@
+openapi: 3.0.0
+info:
+  title: Link Squad API
+  description: Linksquad를 운영하기 위한 api docs
+  version: 0.1
+servers:
+  - url: http://link.codesquad.co.kr/v1
+    description: 버전 1 api documentation
+components:
+  securitySchemes:
+    ApiKeyAuth:        
+      type: apiKey
+      in: header       
+      name: x-access-token
+security:
+  - ApiKeyAuth: []      
+definitions:
+  Link:
+    properties:
+      author: 
+        type: string
+      title:
+        type: string
+      description:
+        type: string
+      category:
+        type: string
+      url:
+        type: string
+      metadata: 
+        type: string
+paths:
+  /v1:
+    get:
+      tags:
+        - Links
+      description: Get links with some conditions
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: author
+          description: author of links
+          in: path
+          required: false
+          type: string
+        - name: page
+          description: current page of links
+          in: path
+          required: false
+          type: integer
+        - name: category
+          description: specific category of links 
+          in: path
+          required: false
+          type: string
+      produces:
+        - application/json
+      responses:
+        200:
+          description: An array of links
+          schema:
+            type: object
+            properties:
+              links:
+                type: object
+                properties:
+                  docs:
+                    type: array
+                    items:
+                      $ref: '#/definitions/Link'
+                  totalDocs:
+                    type: integer
+                  limit:
+                    type: integer
+                  hasPrevPage:
+                    type: boolean
+                  hasNextPage:
+                    type: boolean
+                  page:
+                    type: integer
+                  totalPages:
+                    type: integer
+                  pagingCounter:
+                    type: integer
+                  prevPage:
+                    type: integer
+                  nextPage:
+                    type: integer
+              categories:
+                type: array
+                items:
+                  type: string          
