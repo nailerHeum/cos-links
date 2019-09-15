@@ -1,7 +1,11 @@
 const should = require('chai').should();
+const fs = require('fs');
+const path = require('path');
 const config = require('config');
 const request = require('supertest');
 const server = require('../app');
+
+
 console.log(server.port)
 
 describe('Server', ()=>{
@@ -9,6 +13,8 @@ describe('Server', ()=>{
         server.port.should.equal(config.get('port'));
     });
     it('/ 에서 정상적으로 response를 주는가', (done) => {
+      const resFile = path.resolve(__dirname, '../dist/index.html');
+      const resText = fs.readFileSync(resFile).toString()
       request(server).get('/')
         .expect(200)
         .end((err, res) => {
@@ -16,7 +22,7 @@ describe('Server', ()=>{
             done(err);
             return;
           }
-          res.text.should.equal('hello world!');
+          res.text.should.equal(resText);
           done();
           return;
         });
