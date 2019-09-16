@@ -4,7 +4,7 @@
   "description": "codesquad links",
   "main": "app.js",
   "scripts": {
-    "test": "NODE_ENV=test mocha ./tests/*.spec.js",
+    "test": "NODE_ENV=test mocha ./tests/*.spec.js --exit",
     "serve": "NODE_ENV=production node ./app.js",
     "fake-links": "NODE_ENV=test node ./fake-links.js"
   },
