@@ -1,12 +1,16 @@
 const config = require('config');
 const mongoose = require('mongoose');
 const mongoosePaginate = require('mongoose-paginate-v2');
-
+const DB_HOST = process.env.DB_HOST ? process.env.DB_HOST : 'localhost'
+const DB = process.env.DB ? process.env.DB : config.get('DB');
 (async () => {
   try{
-  await mongoose.connect(`mongodb://${process.env.DB_HOST || 'localhost'}:27017/${process.env.DB}`,
-    { useNewUrlParser: true }
-  );
+    if (process.env.DB_HOST === undefined) {
+
+    }
+    await mongoose.connect(`mongodb://${DB_HOST}:27017/${DB}`,
+      { useNewUrlParser: true }
+    );
   } catch (err) {
     console.log(err);
   }
