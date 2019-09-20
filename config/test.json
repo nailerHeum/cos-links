@@ -1,7 +1,7 @@
 {
   "name": "Server Test",
   "dbhost": "csheum",
-  "database": "mongodb://localhost:27017/linktest",
+  "DB": "linktest",
   "port": 3000,
   "user": "csheum",
   "password": "perchoi1",
