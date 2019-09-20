@@ -1,9 +1,0 @@
-{
-  "name": "Server Test",
-  "dbhost": "csheum",
-  "DB": "linktest",
-  "port": 3000,
-  "user": "csheum",
-  "password": "perchoi1",
-  "accesskey": "dauqsedoc"
-}
