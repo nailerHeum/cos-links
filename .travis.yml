@@ -5,5 +5,8 @@ branches:
   only:
     - master
     - test/integration
+before_install:
+  - openssl aes-256-cbc -K $encrypted_6de00bfef5b7_key -iv $encrypted_6de00bfef5b7_iv -in test.json.enc -out test.json -d
+  - openssl aes-256-cbc -K $encrypted_6de00bfef5b7_key -iv $encrypted_6de00bfef5b7_iv -in test.json.enc -out test.json -d
 services:
   - mongodb
