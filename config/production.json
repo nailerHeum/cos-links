@@ -1,9 +1,0 @@
-{
-  "name": "Server Test",
-  "dbhost": "coslink",
-  "database": "mongodb://localhost:27017/coslink",
-  "port": 3000,
-  "user": "csheum",
-  "password": "perchoi1",
-  "accesskey": "dauqsedoc"
-}
