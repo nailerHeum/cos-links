@@ -15,7 +15,6 @@ router.post('/link', verifyApiUser,async (req, res) => {
     });
   }
   await og(url, async (err, meta) => {
-    console.log(meta);
     const newLink = new Link({
       author: author,
       title: title,

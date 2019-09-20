@@ -38,19 +38,19 @@ paths:
       security:
         - ApiKeyAuth: []
       parameters:
-        - name: author
+        - in: query
+          name: author
           description: author of links
-          in: path
           required: false
           type: string
-        - name: page
+        - in: query
+          name: page
           description: current page of links
-          in: path
           required: false
           type: integer
-        - name: category
+        - in: query
+          name: category
           description: specific category of links 
-          in: path
           required: false
           type: string
       produces:
