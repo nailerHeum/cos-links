@@ -7,8 +7,14 @@ const FIXED_CATEGORIES = ['all', 'backend', 'frontend', 'iOS', 'swift'];
 const og = require('open-graph');
 const verifyApiUser = require('../middlewares/api-auth');
 
-router.post('/link', verifyApiUser,async (req, res) => {
-  const { author, title, description, category, url } = req.body;
+router.post('/link', verifyApiUser, async (req, res) => {
+  const {
+    author,
+    title,
+    description,
+    category,
+    url
+  } = req.body;
   if (!url) {
     res.status(400).json({
       message: "No URL!",
@@ -23,9 +29,9 @@ router.post('/link', verifyApiUser,async (req, res) => {
       url: url,
       metadata: JSON.stringify(meta),
     });
-    try{
+    try {
       await newLink.save();
-      res.status(201).json({  // redirection이 필요한지?
+      res.status(201).json({ // redirection이 필요한지?
         message: "Link Created!",
       });
     } catch (err) {
@@ -36,7 +42,7 @@ router.post('/link', verifyApiUser,async (req, res) => {
   });
 });
 
-router.get('/', verifyApiUser,async (req, res) => {
+router.get('/', verifyApiUser, async (req, res) => {
   // const isIosApp = req.headers['user-agent'].includes('codesquad-blog-collection');
   let requestAuthor = req.query.author;
   let requestPage = req.query.page;
@@ -49,6 +55,9 @@ router.get('/', verifyApiUser,async (req, res) => {
   const options = {
     page: requestPage,
     limit: PAGE_LIMIT,
+    sort: {
+      _id: -1,
+    }
   };
   if (requestCategory === undefined || requestCategory === 'all') {
     query.category = /.*/;
@@ -76,9 +85,13 @@ router.get('/', verifyApiUser,async (req, res) => {
 router.get('/rank', async (req, res) => {
   const ranks = await Link.aggregate(
     [{
-      $group : {
-        _id : { author: "$author" },
-        totalLinks: { $sum: 1 }
+      $group: {
+        _id: {
+          author: "$author"
+        },
+        totalLinks: {
+          $sum: 1
+        }
       }
     }]
   );
@@ -91,7 +104,7 @@ router.get('/rank', async (req, res) => {
     }
     return 0;
   });
-  const results = ranks.slice(0,10);
+  const results = ranks.slice(0, 10);
 
   res.status(200).json({
     ranking: results,
