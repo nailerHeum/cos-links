@@ -4,6 +4,7 @@ const mongoosePaginate = require('mongoose-paginate-v2');
 const DB_HOST = process.env.DB_HOST ? process.env.DB_HOST : 'localhost'
 const DB = process.env.DB ? process.env.DB : config.get('DB');
 
+const sleep = msec => new Promise(resolve => setTimeout(resolve, msec));
 const connectDB = async () => {
   try {
     await mongoose.connect(`mongodb://${DB_HOST}:27017/${DB}`, {
@@ -21,6 +22,7 @@ const connectDB = async () => {
       break;
     } catch (e) {
       console.log(`${e} TRYING TO CONNECT DB ${i} TIMES`);
+      await sleep(1000 * 10);
     }
   }
   console.log(`Successfully Connected DB`);
