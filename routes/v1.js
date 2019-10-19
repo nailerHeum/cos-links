@@ -20,7 +20,7 @@ router.post('/link', verifyApiUser, async (req, res) => {
       message: "No URL!",
     });
   }
-  og(url, async (err, meta) => {
+  await og(url, async (err, meta) => {
     const newLink = new Link({
       author: author,
       title: title,
@@ -40,6 +40,7 @@ router.post('/link', verifyApiUser, async (req, res) => {
       });
     }
   });
+  return;
 });
 
 router.get('/', verifyApiUser, async (req, res) => {
