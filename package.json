@@ -4,7 +4,7 @@
   "description": "codesquad links",
   "main": "app.js",
   "scripts": {
-    "test": "NODE_ENV=test mocha ./tests/*.spec.js --exit",
+    "test": "NODE_ENV=test mocha ./src/tests/*.spec.js --exit",
     "serve": "NODE_ENV=production node ./app.js",
     "fake-links": "NODE_ENV=test node ./fake-links.js"
   },
@@ -17,7 +17,7 @@
   "bugs": {
     "url": "https://github.com/nailerHeum/cos-links/issues"
   },
-  "homepage": "https://github.com/nailerHeum/cos-links#readme",
+  "homepage": "http://link.codesquad.co.kr",
   "dependencies": {
     "body-parser": "^1.19.0",
     "chai": "^4.2.0",

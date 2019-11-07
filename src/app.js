@@ -1,10 +1,11 @@
 const config = require('config');
-const express = require('express');
 const v1Router = require('./routes/v1');
 const bodyParser = require('body-parser');
 const swaggerUi = require('swagger-ui-express');
 const swaggerJSDoc = require('swagger-jsdoc');
 const db = require('./models/db');
+const express = require('express');
+const path = require('path');
 const app = express();
 
 app.all('/*', function (req, res, next) {
@@ -18,7 +19,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
-app.use(express.static('dist'));
+app.use(express.static(path.join(__dirname, 'dist')));
 app.use('/v1', v1Router);
 app.get('/', (req, res) => res.status(200).render(index.html));
 
