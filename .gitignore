@@ -15,12 +15,14 @@ lib-cov
 # Coverage directory used by tools like istanbul
 coverage
 
-config/production.json
-config/test.json
+# ADD ON DEMAND
+node_modules
+.DS_Store
+config
+
 # nyc test coverage
 .nyc_output
 
-tests
 # Grunt intermediate storage (http://gruntjs.com/creating-plugins#storing-task-files)
 .grunt
 
@@ -32,9 +34,6 @@ bower_components
 
 # Compiled binary addons (https://nodejs.org/api/addons.html)
 build/Release
-
-# Dependency directories
-node_modules/
 
 # TypeScript v1 declaration files
 typings/

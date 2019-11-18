@@ -1,17 +1,17 @@
 language: node_js
 node_js:
-- stable
+  - stable
 branches:
   only:
-  - master
-  - test/integration
+    - master
+    - test/integration
 before_install:
-- mkdir ./config
-- openssl aes-256-cbc -k "$super_secret_password" -in test.json.enc -out ./config/test.json -d
-- openssl aes-256-cbc -k "$super_secret_password" -in production.json.enc -out ./config/production.json -d
-  
+  - mkdir ./src/config
+  - openssl aes-256-cbc -k "$super_secret_password" -in test.json.enc -out ./src/config/test.json -d
+  - openssl aes-256-cbc -k "$super_secret_password" -in production.json.enc -out ./src/config/production.json -d
+
 services:
-- mongodb
+  - mongodb
 env:
   global:
     secure: cIqcGWSdrX+kdIK697guflXDkNsvXQUl6X2T4lAbz4Q06budgMcEHKS52X6iZPrF2vhNQ1ayF5sJhFl0NcglgMxMx1Dx1o+FJod87tpg97XC8bkPxzqWhfdNl5EnUbewiwdLct+LuRV9wT84Csi9k9SlVhhO2lfCmhA1p+Iss7OYvc9UygUyo/y0rVjUe+PmvN9zphYNZE3/kZrof5t6RthzbXNRcuesEhmVlrPd04VZ2/jg8LhKeDWEAAZagZuKZ92POssvUTpHsDXRql+b3LLU/Ccssgd/Eb/KZuk8Fi2Z4CLt2oTX3LOU3RTmeFTayGGnS1FXc9f4fCRWwQi3Gf8oOtaMfdpIjG6qSsXI374rZzKZyvX9v0I4ZKGc/rk7uphMQfXYAbAALlBpr97a7ttPJ4aG/wq5HB3UnNuVsL7EqiLV0Uu6TJJ7/FqUGpy4uV2hTD5MAusMFD2VaJYjVp3PQtPZlfRQN1yYQtqHyUNsMVSFr4n3WE4SU5NY1oe9UdjZKsVIOmHErdWuECAYhNGkl+UsU4xMLNQx73Ce1RL8liu3bo34eDbD3zUYtX6KhhnbSArB0n3f1BoqPCRrmW8AtnbPt9DV8uL2n7uAJGm/SJ78QMcB9ybQXSsABuZTjf9oqB6MJI1SnGiQoCP0oEDzT/HQsReaRR/HfVKyebE=

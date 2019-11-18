@@ -1,40 +1,17 @@
 {
   "name": "cos-links",
   "version": "0.0.1",
-  "description": "codesquad links",
-  "main": "app.js",
+  "main": "index.js",
+  "devDependencies": {},
   "scripts": {
-    "test": "NODE_ENV=test mocha ./tests/*.spec.js --exit",
-    "serve": "NODE_ENV=production node ./app.js",
-    "fake-links": "NODE_ENV=test node ./fake-links.js"
+    "server:test": "yarn workspace server test",
+    "server:serve": "yarn workspace server serve"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/nailerHeum/cos-links.git"
-  },
-  "author": "Nailer",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/nailerHeum/cos-links/issues"
-  },
-  "homepage": "https://github.com/nailerHeum/cos-links#readme",
-  "dependencies": {
-    "body-parser": "^1.19.0",
-    "chai": "^4.2.0",
-    "config": "^3.2.2",
-    "express": "^4.17.1",
-    "faker": "^4.1.0",
-    "mocha": "^6.2.0",
-    "mongoose": "^5.7.5",
-    "mongoose-paginate-v2": "^1.3.0",
-    "nodemon": "^1.19.1",
-    "open-graph": "^0.2.4"
-  },
-  "devDependencies": {
-    "eslint": "^6.1.0",
-    "eslint-config-google": "^0.13.0",
-    "supertest": "^4.0.2",
-    "swagger-jsdoc": "^3.4.0",
-    "swagger-ui-express": "^4.0.7"
-  }
+  "private": true,
+  "repository": "https://github.com/nailerHeum/cos-links.git",
+  "author": "nailerHeum <kingman330@gmail.com>",
+  "license": "MIT",
+  "workspaces": [
+    "server"
+  ]
 }
