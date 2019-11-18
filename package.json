@@ -5,13 +5,16 @@
   "devDependencies": {},
   "scripts": {
     "server:test": "yarn workspace server test",
-    "server:serve": "yarn workspace server serve"
+    "server:serve": "yarn workspace server serve",
+    "client:dev": "yarn workspace client dev",
+    "client:build": "yarn workspace client serve"
   },
   "private": true,
   "repository": "https://github.com/nailerHeum/cos-links.git",
   "author": "nailerHeum <kingman330@gmail.com>",
   "license": "MIT",
   "workspaces": [
-    "server"
+    "server",
+    "client"
   ]
 }
