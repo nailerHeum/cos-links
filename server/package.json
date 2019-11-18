@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "main": "app.js",
   "scripts": {
-    "test": "NODE_ENV=test mocha ./src/tests/*.spec.js --exit",
+    "test": "NODE_ENV=test mocha ./tests/*.spec.js --exit",
     "serve": "NODE_ENV=production node ./app.js"
   },
   "license": "MIT",
