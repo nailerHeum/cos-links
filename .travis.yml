@@ -6,9 +6,9 @@ branches:
     - master
     - test/integration
 before_install:
-  - mkdir ./config
-  - openssl aes-256-cbc -k "$super_secret_password" -in test.json.enc -out ./config/test.json -d
-  - openssl aes-256-cbc -k "$super_secret_password" -in production.json.enc -out ./config/production.json -d
+  - mkdir ./src/config
+  - openssl aes-256-cbc -k "$super_secret_password" -in test.json.enc -out ./src/config/test.json -d
+  - openssl aes-256-cbc -k "$super_secret_password" -in production.json.enc -out ./src/config/production.json -d
 
 services:
   - mongodb

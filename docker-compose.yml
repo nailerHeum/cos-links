@@ -1,4 +1,4 @@
-version: "3" 
+version: "3"
 services:
   server:
     container_name: cos_server
@@ -12,9 +12,8 @@ services:
       - DB=coslink
     networks: # 각 컨테이너를 연결하는 네트워크
       - backend
-    depends_on: 
+    depends_on:
       - mongodb
-    
 
   mongodb:
     container_name: mongo
@@ -22,13 +21,13 @@ services:
     ports:
       - "27017:27017"
     volumes:
-      - mongo:/data/db # volume 위치 
+      - mongo:/data/db # volume 위치
     networks:
       - backend # 앱 서버와 같은 네트워크에 연결
-      
+
   nginx:
     container_name: nginx
-    build: 
+    build:
       context: .
       dockerfile: Dockerfile.nginx
     ports:
