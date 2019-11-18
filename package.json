@@ -7,7 +7,7 @@
     "server:test": "yarn workspace server test",
     "server:serve": "yarn workspace server serve",
     "client:dev": "yarn workspace client dev",
-    "client:build": "yarn workspace client serve"
+    "client:build": "yarn workspace client build"
   },
   "private": true,
   "repository": "https://github.com/nailerHeum/cos-links.git",
