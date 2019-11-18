@@ -7,7 +7,7 @@ WORKDIR /app
 
 ADD ./ /app
 
-RUN npm install
+RUN yarn install
 
 ENV NODE_ENV=production
 
