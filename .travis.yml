@@ -6,7 +6,6 @@ branches:
     - master
     - dev
 before_install:
-  - mkdir ./src/config
   - openssl aes-256-cbc -k "$super_secret_password" -in ./server/config/test.json.enc -out ./server/config/test.json -d
   - openssl aes-256-cbc -k "$super_secret_password" -in ./server/config/production.json.enc -out ./server/config/production.json -d
 
