@@ -5,13 +5,14 @@ import styled from "styled-components";
 const replaceDefaultImag = e => {
   e.target.onerror = null;
   // todo default image로 대체
-  e.target.src = "http://www.igdir.edu.tr/Addons/Resmi/Images/User-Profile/profil-19.png";
+  e.target.src =
+    "http://www.igdir.edu.tr/Addons/Resmi/Images/User-Profile/profil-19.png";
 };
 
 const StyledImg = styled.img`
-  width: 4rem;
+  width: 6rem;
   height: 4rem;
-  border-radius: 50%;
+  border-radius: 20%;
 `;
 const Image = ({ src }) => {
   return <StyledImg src={src} onError={replaceDefaultImag} />;
