@@ -14,13 +14,11 @@ module.exports = {
   },
 
   module: {
-    rules: [
-      {
-        test: /\.jsx?$/,
-        loader: 'babel-loader',
-        exclude: /node_modules/
-      }
-    ]
+    rules: [{
+      test: /\.jsx?$/,
+      loader: 'babel-loader',
+      exclude: /node_modules/
+    }]
   },
 
   output: {
@@ -38,6 +36,9 @@ module.exports = {
       filename: 'admin-index.html',
       template: 'public/admin/admin-index.html',
       chunks: ['admin']
+    }),
+    new webpack.DefinePlugin({
+      CONFIG: JSON.stringify(require("config"))
     })
   ]
 };
