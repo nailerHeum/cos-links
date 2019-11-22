@@ -19,7 +19,6 @@ coverage
 node_modules
 .DS_Store
 server/config/*.json
-yarn.lock
 server/dist
 # nyc test coverage
 .nyc_output
