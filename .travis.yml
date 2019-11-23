@@ -11,7 +11,7 @@ before_install:
 
 script:
   - yarn workspace client build
-
+  - yarn test
 services:
   - mongodb
 env:
