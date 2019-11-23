@@ -10,7 +10,7 @@ describe('Server', () => {
     server.port.should.equal(config.get('port'));
   });
   it('/ 에서 정상적으로 response를 주는가', (done) => {
-    const resFile = path.resolve(__dirname, '../dist/index.html');
+    const resFile = path.resolve(__dirname, '../public/index.html');
     const resText = fs.readFileSync(resFile).toString()
     request(server).get('/')
       .expect(200)
