@@ -1,12 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-//  TODO
 
 const replaceDefaultImag = e => {
   e.target.onerror = null;
   // todo default image로 대체
-  e.target.src =
-    "http://www.igdir.edu.tr/Addons/Resmi/Images/User-Profile/profil-19.png";
+  e.target.src = "/assets/images/defaultImage.png";
 };
 
 const StyledImg = styled.img`
