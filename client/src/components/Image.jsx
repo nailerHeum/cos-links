@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components";
+const defaultImage = require("../assets/images/default-image.png");
 
 const replaceDefaultImag = e => {
   e.target.onerror = null;
   // todo default image로 대체
-  e.target.src = "/assets/images/defaultImage.png";
+  e.target.src = defaultImage;
 };
 
 const StyledImg = styled.img`

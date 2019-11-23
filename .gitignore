@@ -19,7 +19,11 @@ coverage
 node_modules
 .DS_Store
 server/config/*.json
-server/dist
+server/public
+.cache
+dist
+
+
 # nyc test coverage
 .nyc_output
 

@@ -10,7 +10,8 @@ const Wrapper = styled.div`
     font-size: 100%;
     width: 100%;
     border: 1px solid #dae1e7;
-    background: url(https://img.icons8.com/metro/26/000000/expand-arrow.png) no-repeat 95% 50%/5%;
+    background: url(https://img.icons8.com/metro/26/000000/expand-arrow.png)
+      no-repeat 95% 50%/5%;
     -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
     padding: 0.5rem 0.75rem;
