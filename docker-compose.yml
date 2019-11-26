@@ -2,7 +2,7 @@ version: "3"
 services:
   server:
     container_name: cos_server
-    build: ./server # Dockerfile 위치
+    build: . # Dockerfile 위치
     ports:
       - "3000:3000" # 연결할 포트
     environment: # 환경변수 설정
@@ -34,6 +34,8 @@ services:
       - "80:80"
     networks:
       - backend
+    depends_on:
+      - server
 networks: # bridge 네트워크
   backend:
     driver: bridge

@@ -1,5 +1,5 @@
 FROM node:dubnium
-MAINTAINER Nailer kingman330@gmail.com
+LABEL maintainer="Nailer kingman330@gmail.com"
 
 RUN mkdir -p /app
 
@@ -9,6 +9,8 @@ ADD ./ /app
 
 RUN yarn install
 
+RUN yarn client:build
+
 ENV NODE_ENV=production
 
-CMD node app.js
+CMD node server/app.js

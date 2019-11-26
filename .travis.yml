@@ -6,8 +6,8 @@ branches:
     - master
     - dev
 before_install:
-  - openssl aes-256-cbc -k "$super_secret_password" -in ./server/config/test.json.enc -out ./server/config/test.json -d
-  - openssl aes-256-cbc -k "$super_secret_password" -in ./server/config/production.json.enc -out ./server/config/production.json -d
+  - openssl aes-256-cbc -k "$super_secret_password" -in ./config/test.json.enc -out ./config/test.json -d
+  - openssl aes-256-cbc -k "$super_secret_password" -in ./config/production.json.enc -out ./config/production.json -d
 
 script:
   - yarn workspace client build
