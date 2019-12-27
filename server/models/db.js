@@ -1,3 +1,4 @@
+process.env["NODE_CONFIG_DIR"] = __dirname + "/configDir/";
 const config = require("config");
 const mongoose = require("mongoose");
 const DB_HOST = process.env.DB_HOST ? process.env.DB_HOST : "localhost";
