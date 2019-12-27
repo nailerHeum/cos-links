@@ -1,15 +1,15 @@
-process.env['NODE_CONFIG_DIR'] = __dirname + '/../config'
-const config = require('config');
-const v1Router = require('./routes/v1');
-const bodyParser = require('body-parser');
-const swaggerUi = require('swagger-ui-express');
-const swaggerJSDoc = require('swagger-jsdoc');
-const db = require('./models/db');
-const express = require('express');
-const path = require('path');
+process.env["NODE_CONFIG_DIR"] = __dirname + "/../config";
+const config = require("config");
+const v1Router = require("./routes/v1");
+const bodyParser = require("body-parser");
+const swaggerUi = require("swagger-ui-express");
+const swaggerJSDoc = require("swagger-jsdoc");
+const db = require("./models/db");
+const express = require("express");
+const path = require("path");
+const app = express();
 
-
-app.all("/*", function (req, res, next) {
+app.all("/*", function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "*");
   res.header("Access-Control-Allow-Methods", "*");
@@ -37,7 +37,7 @@ const swaggerOptions = {
   apis: ["./swagger-docs.yaml"]
 };
 const swaggerSpec = swaggerJSDoc(swaggerOptions);
-app.get("/api-docs.json", function (req, res) {
+app.get("/api-docs.json", function(req, res) {
   // line 41
   res.setHeader("Content-Type", "application/json");
   res.send(swaggerSpec);
