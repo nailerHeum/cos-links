@@ -10,6 +10,7 @@ describe("Server", () => {
   it("서버가 해당 포트에서 동작하는지 테스트", () => {
     server.port.should.equal(config.get('port'));
   });
+
   it("/ 에서 정상적으로 response를 주는가", done => {
     const resFile = path.resolve(__dirname, "../public/index.html");
     const resText = fs.readFileSync(resFile).toString();
