@@ -9,7 +9,7 @@ const express = require("express");
 const path = require("path");
 const app = express();
 
-app.all("/*", function(req, res, next) {
+app.all("/*", function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "*");
   res.header("Access-Control-Allow-Methods", "*");
@@ -37,14 +37,14 @@ const swaggerOptions = {
   apis: ["./swagger-docs.yaml"]
 };
 const swaggerSpec = swaggerJSDoc(swaggerOptions);
-app.get("/api-docs.json", function(req, res) {
+app.get("/api-docs.json", function (req, res) {
   // line 41
   res.setHeader("Content-Type", "application/json");
   res.send(swaggerSpec);
 });
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-const listen = app.listen(parseInt(process.env.port, 10), () =>
+const listen = app.listen(config.get('port'), () =>
   console.log(`Run server on port ${process.env.port}`)
 );
 module.exports = app;

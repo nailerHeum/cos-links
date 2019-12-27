@@ -8,7 +8,7 @@ const server = require("../app");
 
 describe("Server", () => {
   it("서버가 해당 포트에서 동작하는지 테스트", () => {
-    server.port.should.equal(parseInt(process.env.port, 10));
+    server.port.should.equal(config.get('port'));
   });
   it("/ 에서 정상적으로 response를 주는가", done => {
     const resFile = path.resolve(__dirname, "../public/index.html");
@@ -29,7 +29,7 @@ describe("Server", () => {
   it("get /v1 request", done => {
     request(server)
       .get("/v1")
-      .set("x-access-token", process.env.accesskey)
+      .set("x-access-token", config.get('accesskey'))
       .expect(200)
       .end((err, res) => {
         if (err) {
@@ -45,7 +45,7 @@ describe("Server", () => {
   it("post /v1/link request", done => {
     request(server)
       .post("/v1/link")
-      .set("x-access-token", process.env.accesskey)
+      .set("x-access-token", config.get('accesskey'))
       .send({
         author: "Corn",
         title: "스토리보드",
