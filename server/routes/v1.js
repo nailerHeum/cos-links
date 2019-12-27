@@ -20,7 +20,7 @@ router.post('/link', verifyApiUser, async (req, res) => {
       message: "No URL!",
     });
   }
-  await og(url, async (err, meta) => {
+  og(url, async (err, meta) => {
     const newLink = new Link({
       author: author,
       title: title,
