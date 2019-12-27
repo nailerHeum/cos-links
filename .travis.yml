@@ -6,13 +6,10 @@ branches:
     - master
     - dev
 before_install:
-  - openssl aes-256-cbc -k "$super_secret_password" -in ./config/test.json.enc -out ./config/test.json -d
-  - openssl aes-256-cbc -k "$super_secret_password" -in ./config/production.json.enc -out ./config/production.json -d
+  - openssl aes-256-cbc -K $encrypted_86553c6708a8_key -iv $encrypted_86553c6708a8_iv -in ./config/secrets.tar.enc -out ./config/secrets.tar -d
+  - tar xvf ./config/secrets.tar
 script:
   - yarn workspace client build
   - yarn test
 services:
   - mongodb
-env:
-  global:
-    secure: AP3qzyM0o7ltEZrKIugmhdT74PyJNsHDIFK3FKfcvEgzYWN8dyEGjddAaxAx3D8LSEutqrvMjdzL+slALe0sdzn4dOK9/WT0O/QND7DB/ljYiLGb2jzOapxebct/WzfR5GrBsErBMwfAQ/kzuppZ3matMoBbqtBgbmz6y0XltoCR2rkMP7LWQZgzQGb2mJ7PFWdSa4tTrxWTj5C8NRS2q+C/3xTdhIGgrlUbAebAGJUvV1DZ7p31Gf5vqpnL5/+GhcfuaQb+bfa+3JAV7h01UN/QPR1v5E0sVbrPnJFVaWGa4JU0d4XryFcDJXaroqN1JLdZfN1Je4St6vuGXLRJAX/Bbcw5ai2AJaIFLV7YfO4Z/xWHjMeUBaYpGPWaXoUkEbwE3j3qrWUdU1uu3NHn5+PRor1ySszduj0HLAa/krcEteo74W6Bl5zYetgWlqeaLVcu5vImnlIL7H0YexxFtE6QEXQtakmC2GfSEUcvLadz6n95ON/VTrBOvbYXufogxqfjmNDEsFsyGY0zPiZs5HEN/uqg5Z4E4RKKHqotx0R3vrWps/6mdQPriEwQAHYNGHxk9eLGsLDZbVOjer3VQa+scMJEyj0X4PyFrjPV5wb0drkyAOFt3KTv6qhCHzcVKOyGxGW1wAiqLu6vFyBQ+PHDJnHN0FVv2nSGR1w6aYw=

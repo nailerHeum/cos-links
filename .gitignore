@@ -19,7 +19,7 @@ coverage
 node_modules
 .DS_Store
 config/*.json
-config/.env
+config/secrets.tar
 server/public
 .cache
 dist
