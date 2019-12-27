@@ -45,7 +45,7 @@ app.get("/api-docs.json", function (req, res) {
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 const listen = app.listen(config.get('port'), () =>
-  console.log(`Run server on port ${process.env.port}`)
+  console.log(`Run server on port ${config.get('port')}`)
 );
 module.exports = app;
 module.exports.port = listen.address().port;
