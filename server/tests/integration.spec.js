@@ -1,3 +1,4 @@
+process.env['NODE_CONFIG_DIR'] = __dirname + '/../config'
 const should = require('chai').should();
 const fs = require('fs');
 const path = require('path');
