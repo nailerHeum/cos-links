@@ -10,7 +10,7 @@ module.exports = async () => {
   try {
     await mongoose.connect(`mongodb://${DB_HOST}:27017/${DB}`, {
       useNewUrlParser: true,
-      useUnifiedTopology: true,
+      useUnifiedTopology: true
     });
   } catch (err) {
     console.log(err);
