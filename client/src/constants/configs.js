@@ -1,6 +1,6 @@
 import {
   accesskey
-} from '../../../config/production.json';
+} from './../../../config/production.json';
 
 const CONFIGS = {
   // url: './public/resource/localdata.json'
